@@ -10,12 +10,17 @@ services:
     ports:
       - '9200:9200'
       - '9300:9300'
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.4.0
+    image: docker.elastic.co/kibana/kibana:7.5.2
     links:
       - elasticsearch
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
     ports:
       - 5601:5601
+volumes:
+  es-data:
+    driver: local
