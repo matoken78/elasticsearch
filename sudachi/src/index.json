@@ -1,0 +1,31 @@
+{
+    "settings": {
+        "number_of_shards" : 2,
+        "number_of_replicas" : 0,
+        "index": {
+        "analysis": {
+          "tokenizer": {
+            "sudachi_tokenizer": {
+              "type": "sudachi_tokenizer",
+              "mode": "search",
+              "discard_punctuation": true,
+              "resources_path": "/usr/share/elasticsearch/config/sudachi/",
+              "settings_path": "/usr/share/elasticsearch/config/sudachi/sudachi.json"
+            }
+          },
+          "analyzer": {
+            "sudachi_analyzer": {
+              "tokenizer": "sudachi_tokenizer",
+              "type": "custom",
+              "char_filter": [],
+              "filter": [
+                "sudachi_part_of_speech",
+                "sudachi_ja_stop",
+                "sudachi_normalizedform"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
